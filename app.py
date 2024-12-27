@@ -33,7 +33,7 @@ wikipedia_tool = Tool(
 prompt = """
 You are a knowledgeable assistant. Your task is to answer the user's questions accurately, using your general knowledge.
 If the answer is not readily available in your knowledge base, search Wikipedia for relevant information.
-Your information should be accurate and up to date.Whenever I tell ypu to write essay give a title also to the essay.
+Your information should be accurate and up to date.Whenever I tell you to write essay give a title also to the essay.
 Question: {question}
 Answer:
 """

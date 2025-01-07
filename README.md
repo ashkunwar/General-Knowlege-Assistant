@@ -2,6 +2,7 @@
 
 This repository contains the implementation of a General Knowledge Assistant built using Streamlit and LangChain. The assistant leverages the Groq API for LLM capabilities and integrates tools like Wikipedia API for retrieving factual information. It is designed to answer general knowledge questions, provide logical reasoning, and write essays on various topics.
 
+
 ## Features
 - **Groq API Integration**: Utilizes the Groq LLM (llama-3.1-70b) for generating responses.
 - **Wikipedia API**: Searches Wikipedia for accurate and up-to-date information when required.
@@ -32,9 +33,12 @@ This repository contains the implementation of a General Knowledge Assistant bui
 
 ## Usage
 1. **API Key**: Enter your Groq API key in the sidebar to initialize the assistant.
-2. **Ask Questions**: Input your general knowledge question in the text area and click "Find my answer".
+2. **Ask Questions**: Input your general knowledge question in the text area and click "Find my answer."
 3. **Essay Writing**: Simply ask the assistant to write an essay, and it will provide a titled essay in response.
 4. **Response History**: The assistant maintains a conversation history for easy reference.
+
+## Deployed Application
+Check out the live application here: [General Knowledge Assistant App](https://general-knowlege-assistant.streamlit.app/)
 
 ## File Structure
 - `app.py`: The main Streamlit application file.
@@ -64,3 +68,4 @@ This project is licensed under the MIT License.
 
 ## Contact
 For any inquiries, please contact [Ashank Kunwar](https://github.com/ashkunwar).
+

@@ -1,5 +1,8 @@
 # General Knowledge Assistant
 
+
+![WhatsApp Image 2024-12-27 at 23 27 30_fbd33496](https://github.com/user-attachments/assets/b75dda57-df84-47a7-9d53-da76ffffc811)
+
 This repository contains the implementation of a General Knowledge Assistant built using Streamlit and LangChain. The assistant leverages the Groq API for LLM capabilities and integrates tools like Wikipedia API for retrieving factual information. It is designed to answer general knowledge questions, provide logical reasoning, and write essays on various topics.
 
 

@@ -32,3 +32,4 @@ numexpr
 huggingface_hub
 Sympy
 PyPDF2
+streamlit

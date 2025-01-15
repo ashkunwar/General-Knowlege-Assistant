@@ -7,7 +7,7 @@ This repository contains the implementation of a General Knowledge Assistant bui
 
 
 ## Features
-- **Groq API Integration**: Utilizes the Groq LLM (llama-3.1-70b) for generating responses.
+- **Groq API Integration**: Utilizes the LLM (llama-3.1-70b) for generating responses.
 - **Wikipedia API**: Searches Wikipedia for accurate and up-to-date information when required.
 - **Streamlit Interface**: A user-friendly web application interface for interactive question-answering.
 - **Reasoning Tool**: Combines logical reasoning and factual information for high-quality responses.
@@ -41,7 +41,7 @@ This repository contains the implementation of a General Knowledge Assistant bui
 4. **Response History**: The assistant maintains a conversation history for easy reference.
 
 ## Deployed Application
-Check out the live application here: [General Knowledge Assistant App](https://general-knowlege-assistant.streamlit.app/)
+Deployed the application on HuggingFace.You can check out the live application here: [General Knowledge Assistant App](https://huggingface.co/spaces/Ashkchamp/General_Knowledge_Assistant)
 
 ## File Structure
 - `app.py`: The main Streamlit application file.

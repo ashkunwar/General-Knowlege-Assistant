@@ -1,74 +1,126 @@
-# General Knowledge Assistant
+# 🧭 General Knowledge Assistant
 
+A modern, Streamlit-powered chatbot that combines **Groq’s Llama-3-70B** with **Google Gemini 1.5** and on-demand web search to answer anything from trivia to deep technical questions.  
+It features multi-chat sessions, elegant UI/UX, and secure API-key handling – all in a single Python file.
 
-![WhatsApp Image 2024-12-27 at 23 27 30_fbd33496](https://github.com/user-attachments/assets/b75dda57-df84-47a7-9d53-da76ffffc811)
+---
 
-This repository contains the implementation of a General Knowledge Assistant built using Streamlit and LangChain. The assistant leverages the Groq API for LLM capabilities and integrates tools like Wikipedia API for retrieving factual information. It is designed to answer general knowledge questions, provide logical reasoning, and write essays on various topics.
+## ✨ Features
 
+| Capability | Details |
+|------------|---------|
+| **Dual-LLM pipeline** | • **Groq Llama-3-70B** (via `langchain_groq`) for core reasoning and responses.<br>• **Gemini 1.5-pro** for meta-reasoning (decides when to web-search) and safe-content filtering. |
+| **Smart Web Search** | Uses **DuckDuckGo** through `langchain_community.tools.DuckDuckGoSearchRun` only when Gemini signals `<SEARCH>`. |
+| **Persistent Chats** | Auto-saves each conversation (name, messages, timestamp) in Streamlit Session State; switch, rename, or delete with one click. |
+| **Polished UI** | Custom CSS for clean, mobile-friendly chat bubbles, avatars, typing indicator, dark-font on light theme. |
+| **Zero-backend setup** | Runs locally – no database or server-side code required. |
+| **Secure Keys** | API keys loaded from a local **`.env`** file (never stored in code or state). |
 
-## Features
-- **Groq API Integration**: Utilizes the LLM (llama-3.1-70b) for generating responses.
-- **Wikipedia API**: Searches Wikipedia for accurate and up-to-date information when required.
-- **Streamlit Interface**: A user-friendly web application interface for interactive question-answering.
-- **Reasoning Tool**: Combines logical reasoning and factual information for high-quality responses.
-- **Essay Writing**: Automatically generates essays with titles when requested.
+---
 
-## Prerequisites
-- Python 3.8 or higher
-- A valid Groq API key
+## 🚀 Quick Start
 
-## Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/ashkunwar/general-knowledge-assistant.git
-   cd general-knowledge-assistant
-   ```
+```bash
+# 1. Clone
+git clone https://github.com/<your-handle>/general-knowledge-assistant.git
+cd general-knowledge-assistant
 
-2. Install the required dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+# 2. Create & activate a virtual environment (recommended)
+python -m venv .venv
+source .venv/bin/activate         # On Windows: .venv\Scripts\activate
 
-3. Set up the Streamlit environment:
-   ```bash
-   streamlit run app.py
-   ```
+# 3. Install dependencies
+pip install -r requirements.txt   # generate with `pip freeze > requirements.txt` if needed
 
-## Usage
-1. **API Key**: Enter your Groq API key in the sidebar to initialize the assistant.
-2. **Ask Questions**: Input your general knowledge question in the text area and click "Find my answer."
-3. **Essay Writing**: Simply ask the assistant to write an essay, and it will provide a titled essay in response.
-4. **Response History**: The assistant maintains a conversation history for easy reference.
+# 4. Add your keys
+cp .env.example .env              # then edit .env
+# ────────────────────────────────
+# GROQ_API_KEY=your_groq_key_here
+# GEMINI_API_KEY=your_gemini_key_here
+# ────────────────────────────────
 
-## Deployed Application
-Deployed the application on HuggingFace.You can check out the live application here: [General Knowledge Assistant App](https://huggingface.co/spaces/Ashkchamp/General_Knowledge_Assistant)
+# 5. Run
+streamlit run app.py
+```
 
-## File Structure
-- `app.py`: The main Streamlit application file.
-- `requirements.txt`: Contains the list of dependencies for the project.
+Open <http://localhost:8501> in your browser and start chatting!
 
-## Key Components
-- **StreamlitCallbackHandler**: Ensures real-time updates to the Streamlit interface during response generation.
-- **WikipediaAPIWrapper**: Custom wrapper for integrating Wikipedia search functionality.
-- **LangChain Tools**: Combines the Groq LLM with additional tools for enhanced reasoning and answering capabilities.
+---
 
-## Example
-1. **Question**: "What is the capital of France?"
-   - **Response**: "The capital of France is Paris."
+## 🗂️ Project Structure
 
-2. **Essay Request**: "Write an essay on climate change."
-   - **Response**:
-     ```
-     Title: The Impact of Climate Change on Our Planet
-     Climate change is one of the most pressing issues of our time... (full essay continues)
-     ```
+```
+├── app.py              # Streamlit application (this repo)
+├── requirements.txt    # Python dependencies
+├── .env.example        # Sample environment file
+└── README.md
+```
 
-## Contributing
-Contributions are welcome! Please fork the repository and submit a pull request for any feature additions or bug fixes.
+---
 
-## License
-This project is licensed under the MIT License.
+## 🔧 Configuration
 
-## Contact
-For any inquiries, please contact [Ashank Kunwar](https://github.com/ashkunwar).
+| Variable | Description |
+|----------|-------------|
+| `GROQ_API_KEY` | Obtain from <https://console.groq.com/> |
+| `GEMINI_API_KEY` | Obtain from <https://aistudio.google.com/> |
+| *(Optional)* `PORT` | Override Streamlit default port via `streamlit run app.py --server.port <PORT>` |
 
+Feel free to tweak:
+
+* **Model choice** – change `model="llama-3.3-70b-versatile"` to any Groq-hosted model.  
+* **UI theme** – edit `local_css()` for colours, fonts, layouts.  
+* **Search provider** – swap DuckDuckGo for another `langchain` tool or custom function.
+
+---
+
+## 🏗️ How It Works
+
+1. **User prompt** ➜ stored in session history.  
+2. **Gemini** decides if the query needs a web search (`<SEARCH> keywords`) or not (`NO_SEARCH`).  
+3. If search required, **DuckDuckGo** fetches top results → passed to Groq with a “Search Results” prompt.  
+4. **Groq Llama-3** generates the final answer.  
+5. UI shows a typing indicator while processing, then streams the response.  
+6. All messages & session metadata persist until the browser tab is closed (or deleted via sidebar).
+
+![architecture diagram](docs/architecture.png)<!-- (optional: add your image) -->
+
+---
+
+## 🖼️ Screenshots
+
+| Start Page | Active Chat |
+|------------|-------------|
+| ![screenshot1](docs/screenshot1.png) | ![screenshot2](docs/screenshot2.png) |
+
+*(Drop your own PNGs into `docs/` and update paths.)*
+
+---
+
+## ✍️ Contributing
+
+PRs are welcome!  If you:
+
+1. **Improve UX** – animations, scroll-to-bottom, dark mode.  
+2. **Add data persistence** – e.g. SQLite or supabase backend.  
+3. **Integrate voice** – speech-to-text & TTS.  
+
+…feel free to open an issue or submit a pull request.
+
+---
+
+## 📄 License
+
+Licensed under the **MIT License** – see [LICENSE](LICENSE) for details.
+
+---
+
+## 🙏 Acknowledgements
+
+* [Streamlit](https://streamlit.io/) – rapid data apps.  
+* [Groq API](https://groq.com/) – low-latency LLM inference.  
+* [Google Gemini](https://ai.google/) – cutting-edge generative models.  
+* [LangChain](https://python.langchain.com/) – orchestration glue.  
+* [DuckDuckGo](https://duckduckgo.com/) – privacy-first search results.
+
+Happy hacking!

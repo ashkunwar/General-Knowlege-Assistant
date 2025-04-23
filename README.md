@@ -3,6 +3,8 @@
 A modern, Streamlit-powered chatbot that combines **Groq’s Llama-3-70B** with **Google Gemini 1.5** and on-demand web search to answer anything from trivia to deep technical questions.  
 It features multi-chat sessions, elegant UI/UX, and secure API-key handling – all in a single Python file.
 
+> **🌐 Live demo:** Try it instantly on Hugging Face → **<https://huggingface.co/spaces/Ashkchamp/General_Knowledge_Assistant>**
+
 ---
 
 ## ✨ Features
@@ -12,13 +14,13 @@ It features multi-chat sessions, elegant UI/UX, and secure API-key handling – 
 | **Dual-LLM pipeline** | • **Groq Llama-3-70B** (via `langchain_groq`) for core reasoning and responses.<br>• **Gemini 1.5-pro** for meta-reasoning (decides when to web-search) and safe-content filtering. |
 | **Smart Web Search** | Uses **DuckDuckGo** through `langchain_community.tools.DuckDuckGoSearchRun` only when Gemini signals `<SEARCH>`. |
 | **Persistent Chats** | Auto-saves each conversation (name, messages, timestamp) in Streamlit Session State; switch, rename, or delete with one click. |
-| **Polished UI** | Custom CSS for clean, mobile-friendly chat bubbles, avatars, typing indicator, dark-font on light theme. |
+| **Polished UI** | Custom CSS for clean, mobile-friendly chat bubbles, avatars, and a subtle typing indicator. |
 | **Zero-backend setup** | Runs locally – no database or server-side code required. |
 | **Secure Keys** | API keys loaded from a local **`.env`** file (never stored in code or state). |
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Quick Start (Local)
 
 ```bash
 # 1. Clone
@@ -30,7 +32,7 @@ python -m venv .venv
 source .venv/bin/activate         # On Windows: .venv\Scripts\activate
 
 # 3. Install dependencies
-pip install -r requirements.txt   # generate with `pip freeze > requirements.txt` if needed
+pip install -r requirements.txt
 
 # 4. Add your keys
 cp .env.example .env              # then edit .env
@@ -45,12 +47,14 @@ streamlit run app.py
 
 Open <http://localhost:8501> in your browser and start chatting!
 
+*(Or just use the hosted version on Hugging Face if you don’t have keys handy.)*
+
 ---
 
 ## 🗂️ Project Structure
 
 ```
-├── app.py              # Streamlit application (this repo)
+├── app.py              # Streamlit application
 ├── requirements.txt    # Python dependencies
 ├── .env.example        # Sample environment file
 └── README.md
@@ -66,11 +70,11 @@ Open <http://localhost:8501> in your browser and start chatting!
 | `GEMINI_API_KEY` | Obtain from <https://aistudio.google.com/> |
 | *(Optional)* `PORT` | Override Streamlit default port via `streamlit run app.py --server.port <PORT>` |
 
-Feel free to tweak:
+### Tweaks
 
-* **Model choice** – change `model="llama-3.3-70b-versatile"` to any Groq-hosted model.  
+* **Model choice** – change `model="llama-3.3-70b-versatile"` in `setup_models`.  
 * **UI theme** – edit `local_css()` for colours, fonts, layouts.  
-* **Search provider** – swap DuckDuckGo for another `langchain` tool or custom function.
+* **Search provider** – swap DuckDuckGo for any other `langchain` tool.
 
 ---
 
@@ -83,44 +87,19 @@ Feel free to tweak:
 5. UI shows a typing indicator while processing, then streams the response.  
 6. All messages & session metadata persist until the browser tab is closed (or deleted via sidebar).
 
-![architecture diagram](docs/architecture.png)<!-- (optional: add your image) -->
-
----
-
-## 🖼️ Screenshots
-
-| Start Page | Active Chat |
-|------------|-------------|
-| ![screenshot1](docs/screenshot1.png) | ![screenshot2](docs/screenshot2.png) |
-
-*(Drop your own PNGs into `docs/` and update paths.)*
-
----
-
-## ✍️ Contributing
-
-PRs are welcome!  If you:
-
-1. **Improve UX** – animations, scroll-to-bottom, dark mode.  
-2. **Add data persistence** – e.g. SQLite or supabase backend.  
-3. **Integrate voice** – speech-to-text & TTS.  
-
-…feel free to open an issue or submit a pull request.
-
 ---
 
 ## 📄 License
 
-Licensed under the **MIT License** – see [LICENSE](LICENSE) for details.
+MIT – see [LICENSE](LICENSE).
 
 ---
 
 ## 🙏 Acknowledgements
 
-* [Streamlit](https://streamlit.io/) – rapid data apps.  
-* [Groq API](https://groq.com/) – low-latency LLM inference.  
-* [Google Gemini](https://ai.google/) – cutting-edge generative models.  
-* [LangChain](https://python.langchain.com/) – orchestration glue.  
-* [DuckDuckGo](https://duckduckgo.com/) – privacy-first search results.
-
-Happy hacking!
+* [Streamlit](https://streamlit.io/)  
+* [Groq](https://groq.com/)  
+* [Google Gemini](https://ai.google/)  
+* [LangChain](https://python.langchain.com/)  
+* [DuckDuckGo](https://duckduckgo.com/)
+* 

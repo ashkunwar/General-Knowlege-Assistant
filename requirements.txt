@@ -1,35 +1,33 @@
-langchain
-python-dotenv
-ipykernel
-langchain-community
-pypdf
-bs4
-arxiv
-pymupdf
-wikipedia
-langchain-text-splitters
-langchain-openai
-chromadb
-sentence_transformers
-langchain_huggingface
-faiss-cpu
-langchain_chroma
-duckdb
+# Core Libraries
+numpy
 pandas
-openai
+requests
+pdfplumber
+tqdm
+python-dotenv
+lxml
+beautifulsoup4
+
+# Pinecone (Vector Database)
+pinecone-client
+
+# LangChain & Gemini/Groq Integrations
+langchain
 langchain-groq
-duckduckgo_search==5.3.1b1
-pymupdf
-arxiv
-wikipedia
-mysql-connector-python
-SQLAlchemy
-validators==0.28.1
-youtube_transcript_api
-unstructured
-pytube
-numexpr
-huggingface_hub
-Sympy
-PyPDF2
+langchain-community
+langchain-openai
+langchain-pinecone
+langchain-core
+google-generativeai
+
+# Web Scraping
+selenium
+webdriver-manager
+
 streamlit
+
+# Search APIs
+arxiv
+wikipedia-api
+duckduckgo-search
+wikipedia
